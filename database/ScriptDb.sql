@@ -9,7 +9,7 @@ CREATE TABLE countrys (
 ) ENGINE = InnoDB;
 
 CREATE TABLE characters (
-    id_character INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_character INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     birth_date DATE NOT NULL,
@@ -18,36 +18,36 @@ CREATE TABLE characters (
 ) ENGINE = InnoDB;
 
 CREATE TABLE agents (
-    id_agent INT(11) PRIMARY KEY NOT NULL,
+    id_agent INT PRIMARY KEY NOT NULL,
     id_code VARCHAR(50) NOT NULL,
     FOREIGN KEY (id_agent) REFERENCES characters (id_character)
 ) ENGINE = InnoDB;
 
 CREATE TABLE contacts (
-    id_contact INT (11)PRIMARY KEY NOT NULL,
+    id_contact INT PRIMARY KEY NOT NULL,
     code_name VARCHAR(50) NOT NULL,
     FOREIGN KEY (id_contact) REFERENCES characters (id_character)
 ) ENGINE = InnoDB;
 
 CREATE TABLE targets (
-    id_target INT(11) PRIMARY KEY NOT NULL,
+    id_target INT PRIMARY KEY NOT NULL,
     code_name VARCHAR(50) NOT NULL,
     FOREIGN KEY (id_target) REFERENCES characters (id_character)
 ) ENGINE = InnoDB;
 
 CREATE TABLE skills (
-    id_skill INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_skill INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     description VARCHAR(500)
 ) ENGINE = InnoDB;
 
 CREATE TABLE mission_types (
-    id_mission_type INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_mission_type INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL
 ) ENGINE = InnoDB;
 
 CREATE TABLE mission_status (
-    id_status INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_status INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     status VARCHAR(50) NOT NULL,
     color VARCHAR(10) NOT NULL
 ) ENGINE = InnoDB;
@@ -79,42 +79,47 @@ CREATE TABLE missions (
 ) ENGINE = InnoDB;
 
 CREATE TABLE agents_skills (
-    agent_id INT(11) PRIMARY KEY NOT NULL,
-    skill_id INT(11) PRIMARY KEY NOT NULL,
+    agent_id INT NOT NULL,
+    skill_id INT NOT NULL,
+    PRIMARY KEY (agent_id, skill_id),
     FOREIGN KEY (agent_id) REFERENCES agents (id_agent),
     FOREIGN KEY (skill_id) REFERENCES skills (id_skill)
 ) ENGINE = InnoDB;
 
 CREATE TABLE missions_agents (
-    agent_id INT(11) PRIMARY KEY NOT NULL,
-    mission_id INT(11) PRIMARY KEY NOT NULL,
+    agent_id INT NOT NULL,
+    mission_id INT NOT NULL,
+    PRIMARY KEY (agent_id, mission_id),
     FOREIGN KEY (agent_id) REFERENCES agents (id_agent),
     FOREIGN KEY (mission_id) REFERENCES missions (id_mission)
 ) ENGINE = InnoDB;
 
 CREATE TABLE missions_contacts (
-    contact_id INT(11) PRIMARY KEY NOT NULL,
-    mission_id INT(11) PRIMARY KEY NOT NULL,
+    contact_id INT NOT NULL,
+    mission_id INT NOT NULL,
+    PRIMARY KEY (contact_id, mission_id),
     FOREIGN KEY (contact_id) REFERENCES contacts (id_contact),
     FOREIGN KEY (mission_id) REFERENCES missions (id_mission)
 ) ENGINE = InnoDB;
 
 CREATE TABLE missions_targets (
-    target_id INT(11) PRIMARY KEY NOT NULL,
-    mission_id INT(11) PRIMARY KEY NOT NULL,
+    target_id INT NOT NULL,
+    mission_id INT NOT NULL,
+    PRIMARY KEY (target_id, mission_id),
     FOREIGN KEY (target_id) REFERENCES targets (id_target),
     FOREIGN KEY (mission_id) REFERENCES missions (id_mission)
 ) ENGINE = InnoDB;
 
 CREATE TABLE missions_stashes (
-    stash_code CHAR(5) PRIMARY KEY NOT NULL,
-    mission_id INT(11) PRIMARY KEY NOT NULL,
+    stash_code CHAR(5) NOT NULL,
+    mission_id INT NOT NULL,
+    PRIMARY KEy (stash_code, mission_id),
     FOREIGN KEY (stash_code) REFERENCES stashes (stash_code),
     FOREIGN KEY (mission_id) REFERENCES missions (id_mission)
 ) ENGINE = InnoDB;
 
 CREATE TABLE users (
-    id_user INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_user INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     mail VARCHAR(200) NOT NULL,
@@ -123,13 +128,14 @@ CREATE TABLE users (
 ) ENGINE = InnoDB;
 
 CREATE TABLE roles (
-    id_role INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_role INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL
 ) ENGINE = InnoDB;
 
 CREATE TABLE users_roles (
-    user_id INT(11) PRIMARY KEY NOT NULL,
-    role_id INT(11) PRIMARY KEY NOT NULL,
+    user_id INT NOT NULL,
+    role_id INT NOT NULL,
+    PRIMARY KEY (user_id, role_id),
     FOREIGN KEY (user_id) REFERENCES users (id_user),
     FOREIGN KEY (role_id) REFERENCES roles (id_role)
 ) ENGINE = InnoDB;
