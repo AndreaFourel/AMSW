@@ -267,6 +267,81 @@ VALUES
     ('Echec', 'FE2D00'),
     ('Gros fiasco', '000000');
 
+INSERT INTO
+    stashes (stash_code, name, address, type, country_id)
+VALUES
+       ('AMK01', 'Le Tambour Rafistolé', 'Rue du Filigrane', 'chambre raisonnablement insalubre' 'AMK'),
+       ('AMK02', 'La Tête de Troll', 'Les Ombres', 'remise glauque', 'AMK'),
+       ('AMK03', 'Le Seau', 'Rue des Orfèvres', 'endroit calme', 'AMK'),
+       ('LAN01', 'La Grange', 'Trou-d''Ucques', 'grange isolée', 'LAN'),
+       ('LAN02', 'La Fromagerie', 'Rue du Bleu de Lancre à Ohulan Cutash', 'abris de caractère', 'LAN'),
+       ('LAN03', 'La Cabane', 'Forêt de Skund', 'maison en pain d''épice', 'LAN'),
+       ('UBW01', 'La Mine', 'Route des Diligences à Kondom', 'mine de graisse', 'UBW'),
+       ('UBW02', 'Le Croc', 'Rue de la Mélasse', 'repaire de vampires', 'UBW'),
+       ('AGT01', 'Le Port', 'Port de Bès-Pélargic à Hung-Hung', 'hangar vide', 'AGT'),
+       ('AGT02', 'Le Temple', 'Rue de la Grande Muraille à Hung-Hung', 'chambre richement décorée', 'AGT'),
+       ('EPH01', 'Le Labyrinthe', 'Rue des Esclaves', 'ruines d''une fameuse bibliothèque', 'EPH'),
+       ('JOH01', 'Le Tombeau', 'Route de Tsort', 'pièce secrète dans une pyramide'),
+       ('KRU01', 'L''Observatoire', 'Rue des Etoiles', 'chambre de disciple', 'KRU'),
+       ('XXX01', 'La Poche', 'Rue des Kangourous', 'Poche marsupialle', 'XXX'),
+       ('XXX02', 'Le Mouchoir', 'Foutenlair', 'vestibule secret à l''opéra de Foutenlair');
+
+INSERT INTO
+    missions (title, description, code_name, start_date, end_date, country_id, skill_id, mission_type_id, status_id)
+VALUES
+       ('Trouver et ramener Léonard Quirm', 'Léonard Quirm, le plus grand génie du Disque Monde, a été kidnappé par les iksiens. Il faut le trouver et le ramèner à Ankh-Morpork',
+        'Sauver le bricoleur', '2012-03-03 12:00', '2012-03-13 10:00', 'XXX', 8, 6, 3),
+       ('Tuer Bougre-de-Sagouin Jeanson', 'Bougre-de-Sagouin Jeanson, sans conteste le plus pitoyable architecte et ingénieur du multivers, a tracé des nouveaux plans. Cela ne peut plus continuer, il a déjà causé trop de dégats. Le trouver, le tuer et détruire ses plans',
+        'Sauver le patrimoine', '1999-06-12 05:30', '1999-06-14 04:30', 'EPH', 9, 2, 3),
+       ('Surveiller le bagage', 'Trouver Deuxfleurs, touriste imperturbable. Son bagage est un objet magique vivant et plutôt agressif. Le surveiller et rapporter tous ses faits et gestes.',
+        'Mission Deuxfleurs', '2001-12-20 13:00', '2012-05-20 11:00', 'KRU', 3, 1, 5);
+
+INSERT INTO
+    agents_skills (agent_id, skill_id)
+VALUES
+    (1, 1),
+    (1, 2),
+    (8, 12),
+    (8, 6),
+    (9, 12),
+    (9, 8),
+    (12, 12),
+    (12, 7),
+    (16, 3),
+    (16, 4),
+    (16, 5),
+    (17, 9),
+    (17, 12),
+    (17, 6),
+    (19, 13),
+    (19, 3);
+
+INSERT INTO
+    missions_agents (agent_id, mission_id)
+VALUES
+    (9, 1),
+    (12, 1),
+    (17, 2),
+    (16, 3),
+    (8, 3);
+
+
+INSERT INTO
+    missions_contacts (contact_id, mission_id)
+VALUES
+    (6, 1);
+
+INSERT INTO
+    missions_targets (target_id, mission_id)
+VALUES
+    (2, 1),
+    (7, 2),
+    (13, 3);
+
+
+
+
+
 
 
 
