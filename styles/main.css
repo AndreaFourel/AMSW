@@ -5,6 +5,7 @@ body {
     background: black;
     min-width: 360px;
 }
+
 main {
     background-image: url(".././images/a-twin-2.jpeg");
     background-size: cover;
@@ -44,10 +45,7 @@ footer {
 
 .btn {
     border-radius: 50%;
-}
-
-.btn:hover {
-    color: red;
+    color: white;
 }
 
 .bi-binoculars-fill {

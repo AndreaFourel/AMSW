@@ -66,7 +66,7 @@ CREATE TABLE stashes (
 CREATE TABLE missions (
     id_mission INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     title VARCHAR(50) NOT NULL,
-    description VARCHAR(500) NOT NULL,
+    description VARCHAR(255) NOT NULL,
     code_name VARCHAR(50) NOT NULL,
     start_date DATETIME,
     end_date DATETIME,
@@ -337,6 +337,8 @@ VALUES
     (2, 1),
     (7, 2),
     (13, 3);
+
+
 
 
 
