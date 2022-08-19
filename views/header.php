@@ -24,15 +24,27 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
+                    <?php
+                    $ariaCurrent = '';
+
+                    function activePage($current_page){
+                        $url_array =  explode('/', $_SERVER['REQUEST_URI']) ;
+                        $url = end($url_array);
+                        if($current_page == $url){
+                            echo 'active'; //class name in css
+                            $ariaCurrent = 'aria-current="page"';
+                        }
+                    }
+                    ?>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="<?= $appRoot ?>/index.php">Missions</a>
+                            <a class="nav-link <?php activePage('index.php');?>" <?php echo $ariaCurrent?> href="<?= $appRoot ?>/index.php">Missions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= $appRoot ?>/views/detail.php">Détail des missions</a>
+                            <a class="nav-link <?php activePage('detailMission.php');?>" <?php echo $ariaCurrent?> href="<?= $appRoot ?>/views/detailMission.php">Détail des missions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled">Admin</a>
+                            <a class="nav-link <?php activePage('admin.php');?> disabled" <?php echo $ariaCurrent?> >Admin</a>
                         </li>
                     </ul>
                 </div>
