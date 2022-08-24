@@ -4,7 +4,7 @@ class Mission
 {
     // Attributes
 
-    private int $id_mission;
+    private int $id;
     private string $title;
     private string $description;
     private string $code_name;
@@ -39,17 +39,17 @@ class Mission
     /**
      * @return int
      */
-    public function getIdMission(): int
+    public function getId(): int
     {
-        return $this->id_mission;
+        return $this->id;
     }
 
     /**
-     * @param int $id_mission
+     * @param int $id
      */
-    public function setIdMission(int $id_mission): void
+    public function setId(int $id): void
     {
-        $this->id_mission = $id_mission;
+        $this->id= $id;
     }
 
     /**

@@ -10,7 +10,7 @@
 ?>
 
 <main>
-    <h2>Détail des mission</h2>
+    <h2>Détail des missions</h2>
 </main>
 
 <?php

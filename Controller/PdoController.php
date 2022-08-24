@@ -1,18 +1,25 @@
 <?php
 
-abstract class PdoController
+class PdoController
 {
+
+    private PDO $pdo;
 
     public function __construct()
     {
         try {
             (new DotEnv(__DIR__ . '/../.env'))->load();
-            $this->setPdo(new PDO(getenv('DATABASE_DNS'), getenv('DATABASE_USER'), getenv('DATABASE_PASSWORD')));
+            $pdo = new PDO(getenv('DATABASE_DNS'), getenv('DATABASE_USER'), getenv('DATABASE_PASSWORD'));
+            $this->setPdo($pdo);
         } catch (PDOException $e) {
             var_dump($e);
             echo $e->getMessage();
         }
     }
 
-    abstract public function setPdo(PDO $pdo);
+    public function setPdo(PDO $pdo)
+    {
+        $this->pdo = $pdo;
+    }
+
 }

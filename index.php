@@ -40,7 +40,7 @@
             foreach ($missions as $mission):
             ?>
             <tr class="list-row">
-                <th scope="row"><?= $mission->getIdMission()?></th>
+                <th scope="row"><?= $mission->getId()?></th>
                 <td><?= $mission->getTitle()?></td>
                 <td><?= $mission->getStatusId()?></td>
                 <td>
