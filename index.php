@@ -20,41 +20,44 @@
 ?>
 
 <main>
-    <h1 class="my-5">Liste des missions</h1>
-    <p><?php
-        $key = "snake_case";
-        echo implode('', array_map('ucfirst', explode('_', $key)))?></p>
-    <div class="table-responsive-sm mt-5">
+    <section class="mission-list">
+        <h1 class="my-5">Liste des missions</h1>
+        <p><?php
+            $key = "snake_case";
+            echo implode('', array_map('ucfirst', explode('_', $key)))?></p>
+        <div class="table-responsive-sm mt-5">
 
-        <table class="table table-borderless">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Mission</th>
-                <th scope="col">Statut</th>
-                <th scope="col">Détail</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-            foreach ($missions as $mission):
-            ?>
-            <tr class="list-row">
-                <th scope="row"><?= $mission->getId()?></th>
-                <td><?= $mission->getTitle()?></td>
-                <td><?= $mission->getStatusId()?></td>
-                <td>
-                    <a href="#" class="btn btn-dark" data-bs-toggle="tooltip" data-bs-placement="top" title="Détail de la mission"><i class="bi bi-binoculars-fill"></i></a>
-
-
-                </td>
-            </tr>
-            <?php endforeach ?>
+            <table class="table table-borderless">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Mission</th>
+                    <th scope="col">Statut</th>
+                    <th scope="col">Détail</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach ($missions as $mission):
+                    ?>
+                    <tr class="list-row">
+                        <th scope="row"><?php echo $mission->getId()?></th>
+                        <td><?php echo $mission->getTitle()?></td>
+                        <td><?php echo $mission->getStatusId()?></td>
+                        <td>
+                            <a href="#" class="btn btn-dark btn-binoculars" data-bs-toggle="tooltip" data-bs-placement="top" title="Détail de la mission"><i class="bi bi-binoculars-fill"></i></a>
 
 
-            </tbody>
-        </table>
-    </div>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+
 </main>
 <?php
 include "./views/footer.php";

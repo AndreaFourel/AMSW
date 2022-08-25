@@ -1,27 +1,14 @@
-SELECT
-        c.id_contact, c.code_name, c2.country_id, c3.name
-FROM
-        contacts AS c
-INNER JOIN
-        characters c2 on c.id_contact = c2.id_character
-INNER JOIN
-        countrys c3 on c2.country_id = c3.id_country
-WHERE country_id = 'AGT';
+use amsw;
+SELECT m.title, m.description, m.code_name, c.name, s.name, mt.name, m.start_date, m.end_date, ms.status
+FROM mission as m
+         INNER JOIN country as c on m.country_id = c.id
+         INNER JOIN skill as s on m.skill_id = s.id
+         INNER JOIN mission_type as mt on m.mission_type_id = mt.id
+         INNER JOIN mission_status as ms on m.status_id = ms.id;
 
-SELECT
-    t.id_target, t.code_name, c.country_id
-FROM
-    targets AS t
-INNER JOIN
-    characters c on t.id_target = c.id_character
-WHERE country_id != 'AMK';
+SELECT p.first_name as 'prénom', p.last_name as 'nom', a.id_code as 'nom de code' from agent a INNER JOIN person p on a.agent_id = p.id;
 
+SELECT p.first_name as 'prénom', p.last_name as 'nom', c.code_name as 'nom de code', c.profession from contact c inner join person p on c.contact_id = p.id;
 
-SELECT
-    a.id_agent, a.id_code as 'Nom de code', c.first_name as 'Prénom',  c.last_name as 'Nom', c2.name as 'Country'
-FROM
-    agents as a
-INNER JOIN agents_skills as a2 on a.id_agent = a2.agent_id
-INNER JOIN characters c on a.id_agent = c.id_character
-INNER JOIN countrys c2 on c.country_id = c2.id_country
-WHERE a2.skill_id = 2;
+SELECT p.first_name as 'prénom', p.last_name as 'nom', t.code_name as 'nom de code' FROM target t INNER JOIN person p On t.target_id = p.id;
+

@@ -28,11 +28,22 @@ class MissionController
     public function getAll(): array
     {
         $missions = [];
-        $req = $this->pdo->query("SELECT * FROM `mission`");
+        $req = $this->pdo->prepare("SELECT * FROM `mission`");
+        $req->execute();
         $data = $req->fetchAll();
         foreach ($data as $mission){
             $missions[] = new Mission($mission);
         }
         return $missions;
     }
+
+    public function getMissionDetail(int $id): Mission
+    {
+        $req=$this->pdo->prepare("SELECT * FROM `mission` WHERE id = :id");
+        $req->bindParam(":id", $id, PDO::PARAM_INT);
+        $req->execute();
+        $detail = $req->fetch();
+        return new Mission ($detail);
+    }
+
 }
