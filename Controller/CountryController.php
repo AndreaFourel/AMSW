@@ -38,7 +38,7 @@ class CountryController
         $req = $this->pdo->prepare("SELECT * FROM `country` WHERE id = :id");
         $req->bindParam(":id", $id, PDO::PARAM_STR);
         $req->execute();
-        $countryById =$req->fetch();
-        return new Country(($countryById));
+        $country =$req->fetch();
+        return new Country(($country));
     }
 }

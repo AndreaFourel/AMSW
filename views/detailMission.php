@@ -3,19 +3,26 @@
     require_once "../config/DotEnv.php";
     require_once "../Entity/Mission.php";
     require_once "../Entity/Country.php";
+    require_once "../Entity/Skill.php";
     require_once "../Controller/MissionController.php";
     require_once "../Controller/CountryController.php";
+    require_once "../Controller/SkillController.php";
+
     // Instantiate DotEnv to get APP_PATH value used in header.php href and src's
     (new DotEnv(__DIR__ . '/../.env'))->load();
     $appRoot = getenv('APP_PATH');
     $title = "AMSW - Détail des missions";
     include "./header.php";
 
+    // Instantiate MissionController
     $missionController = new MissionController();
     $missions = $missionController->getAll();
 
+    // Instantiate CountryController
     $countryController = new CountryController();
-    $countries = $countryController->getAll();
+
+    // Instantiate SkillController
+    $skillController = new SkillController();
 
     //var_dump($countries);
 
@@ -45,7 +52,8 @@
         $missionById = $missionController->getMissionById((int)($_POST['mission']));
         $countryId = $missionById->getCountryId();
         $countryById = $countryController->getCountryById($countryId);
-        //var_dump($countryById);
+        $skillById = $skillController->getSkillById($missionById->getSkillId());
+        //var_dump($skillById);
     ?>
 
 
@@ -57,7 +65,7 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Nom de code: <?php echo $missionById->getCodeName()?></li>
             <li class="list-group-item">Pays de la mission: <?php echo $countryById->getName()?></li>
-            <li class="list-group-item">Spécialité requise: <?php echo $missionById->getSkillId()?></li>
+            <li class="list-group-item">Spécialité requise pour cette mission: <?php echo $skillById->getName()?></li>
             <li class="list-group-item">Type de mission: <?php echo $missionById->getMissionTypeId()?></li>
             <li class="list-group-item">Date de début: <?php echo $missionById->getStartDate()?></li>
             <li class="list-group-item">Date de fin: <?php echo $missionById->getEndDate()?></li>

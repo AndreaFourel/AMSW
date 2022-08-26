@@ -42,8 +42,8 @@ class MissionController
         $req=$this->pdo->prepare("SELECT * FROM `mission` WHERE id = :id");
         $req->bindParam(":id", $id, PDO::PARAM_INT);
         $req->execute();
-        $missionById = $req->fetch();
-        return new Mission ($missionById);
+        $mission = $req->fetch();
+        return new Mission ($mission);
     }
 
 }
