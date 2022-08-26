@@ -7,13 +7,13 @@ class Mission
     private int $id;
     private string $title;
     private string $description;
-    private string $code_name;
-    private string $start_date;
-    private string $end_date;
-    private string $country_id;
-    private int $skill_id;
-    private int $mission_type_id;
-    private int $status_id;
+    private string $codeName;
+    private string $startDate;
+    private string $endDate;
+    private string $countryId;
+    private int $skillId;
+    private int $missionTypeId;
+    private int $statusId;
 
     // Constructor
 
@@ -28,9 +28,9 @@ class Mission
     public function hydrate(array $data): void
     {
         foreach ($data as $key => $value){
-            $key = implode('', array_map('ucfirst', explode('_', $key)));
+            $key = implode('', array_map('ucfirst', explode('_', $key)));//$key from snake to camel case
             $method = "set" . $key;
-            if(method_exists($this, $method)){
+            if(method_exists($this, $method)){ //check if setter exists and call the setter
                 $this->$method($value);
             }
         }
@@ -46,10 +46,12 @@ class Mission
 
     /**
      * @param int $id
+     * @return Mission
      */
-    public function setId(int $id): void
+    private function setId(int $id): self
     {
         $this->id= $id;
+        return $this;
     }
 
     /**
@@ -62,10 +64,14 @@ class Mission
 
     /**
      * @param string $title
+     * @return Mission
      */
-    public function setTitle(string $title): void
+    public function setTitle(string $title): self
     {
-        $this->title = $title;
+        //if (ctype_alnum($title) && strlen($title) >= 3 && strlen($title) <= 50) {
+            $this->title = $title;
+        //}
+        return $this;
     }
 
     /**
@@ -78,10 +84,14 @@ class Mission
 
     /**
      * @param string $description
+     * @return Mission
      */
-    public function setDescription(string $description): void
+    public function setDescription(string $description): self
     {
-        $this->description = $description;
+        //if (ctype_alnum($description) && strlen($description) >= 3 && strlen($description) <= 255) {
+            $this->description = $description;
+        //}
+        return $this;
     }
 
     /**
@@ -89,15 +99,19 @@ class Mission
      */
     public function getCodeName(): string
     {
-        return $this->code_name;
+        return $this->codeName;
     }
 
     /**
-     * @param string $code_name
+     * @param string $codeName
+     * @return Mission
      */
-    public function setCodeName(string $code_name): void
+    public function setCodeName(string $codeName): self
     {
-        $this->code_name = $code_name;
+        //if (ctype_alnum($codeName) && strlen($codeName) >= 3 && strlen($codeName) <= 50) {
+            $this->codeName = $codeName;
+        //}
+        return $this;
     }
 
     /**
@@ -105,15 +119,19 @@ class Mission
      */
     public function getStartDate(): string
     {
-        return $this->start_date;
+        return $this->startDate;
     }
 
     /**
-     * @param string $start_date
+     * @param string $startDate
+     * @return Mission
      */
-    public function setStartDate(string $start_date): void
+    public function setStartDate(string $startDate): self
     {
-        $this->start_date = $start_date;
+        //if (ctype_alnum($startDate) && strlen($startDate) >= 3 && strlen($startDate) <= 50) {
+            $this->startDate = $startDate;
+        //}
+        return $this;
     }
 
     /**
@@ -121,15 +139,19 @@ class Mission
      */
     public function getEndDate(): string
     {
-        return $this->end_date;
+        return $this->endDate;
     }
 
     /**
-     * @param string $end_date
+     * @param string $endDate
+     * @return Mission
      */
-    public function setEndDate(string $end_date): void
+    public function setEndDate(string $endDate): self
     {
-        $this->end_date = $end_date;
+        //if (ctype_alnum($endDate) && strlen($endDate) >= 3 && strlen($endDate) <= 50) {
+            $this->endDate = $endDate;
+        //}
+        return $this;
     }
 
     /**
@@ -137,15 +159,19 @@ class Mission
      */
     public function getCountryId(): string
     {
-        return $this->country_id;
+        return $this->countryId;
     }
 
     /**
-     * @param string $country_id
+     * @param string $countryId
+     * @return Mission
      */
-    public function setCountryId(string $country_id): void
+    public function setCountryId(string $countryId): self
     {
-        $this->country_id = $country_id;
+        //if (ctype_alpha($countryId) && strlen($countryId) === 3) {
+            $this->countryId = $countryId;
+        //}
+        return $this;
     }
 
     /**
@@ -153,15 +179,19 @@ class Mission
      */
     public function getSkillId(): int
     {
-        return $this->skill_id;
+        return $this->skillId;
     }
 
     /**
-     * @param int $skill_id
+     * @param int $skillId
+     * @return Mission
      */
-    public function setSkillId(int $skill_id): void
+    public function setSkillId(int $skillId): self
     {
-        $this->skill_id = $skill_id;
+        //if($skillId > 0){
+            $this->skillId = $skillId;
+        //}
+        return $this;
     }
 
     /**
@@ -169,15 +199,19 @@ class Mission
      */
     public function getMissionTypeId(): int
     {
-        return $this->mission_type_id;
+        return $this->missionTypeId;
     }
 
     /**
-     * @param int $mission_type_id
+     * @param int $missionTypeId
+     * @return Mission
      */
-    public function setMissionTypeId(int $mission_type_id): void
+    public function setMissionTypeId(int $missionTypeId): self
     {
-        $this->mission_type_id = $mission_type_id;
+        //if($missionTypeId > 0){
+            $this->missionTypeId = $missionTypeId;
+       // }
+        return $this;
     }
 
     /**
@@ -185,15 +219,19 @@ class Mission
      */
     public function getStatusId(): int
     {
-        return $this->status_id;
+        return $this->statusId;
     }
 
     /**
-     * @param int $status_id
+     * @param int $statusId
+     * @return Mission
      */
-    public function setStatusId(int $status_id): void
+    public function setStatusId(int $statusId): self
     {
-        $this->status_id = $status_id;
+        //if($statusId > 0){
+            $this->statusId = $statusId;
+        //}
+        return $this;
     }
 
 

@@ -1,10 +1,7 @@
 <?php
 
-
-
-class MissionController
+class CountryController
 {
-
     private PDO $pdo;
 
     public function __construct()
@@ -24,26 +21,24 @@ class MissionController
         $this->pdo = $pdo;
     }
 
-
     public function getAll(): array
     {
-        $missions = [];
-        $req = $this->pdo->prepare("SELECT * FROM `mission`");
+        $countries = [];
+        $req = $this->pdo->prepare("SELECT * FROM `country`");
         $req->execute();
         $data = $req->fetchAll();
-        foreach ($data as $mission){
-            $missions[] = new Mission($mission);
+        foreach ($data as $country){
+            $countries[] = new Country($country);
         }
-        return $missions;
+        return $countries;
     }
 
-    public function getMissionById(int $id): Mission
+    public function getCountryById(string $id): Country
     {
-        $req=$this->pdo->prepare("SELECT * FROM `mission` WHERE id = :id");
-        $req->bindParam(":id", $id, PDO::PARAM_INT);
+        $req = $this->pdo->prepare("SELECT * FROM `country` WHERE id = :id");
+        $req->bindParam(":id", $id, PDO::PARAM_STR);
         $req->execute();
-        $missionById = $req->fetch();
-        return new Mission ($missionById);
+        $countryById =$req->fetch();
+        return new Country(($countryById));
     }
-
 }

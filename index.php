@@ -23,7 +23,7 @@
     <section class="mission-list">
         <h1 class="my-5">Liste des missions</h1>
         <p><?php
-            $key = "snake_case";
+            $key = "snake_case_case";
             echo implode('', array_map('ucfirst', explode('_', $key)))?></p>
         <div class="table-responsive-sm mt-5">
 

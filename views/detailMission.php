@@ -2,7 +2,9 @@
 
     require_once "../config/DotEnv.php";
     require_once "../Entity/Mission.php";
+    require_once "../Entity/Country.php";
     require_once "../Controller/MissionController.php";
+    require_once "../Controller/CountryController.php";
     // Instantiate DotEnv to get APP_PATH value used in header.php href and src's
     (new DotEnv(__DIR__ . '/../.env'))->load();
     $appRoot = getenv('APP_PATH');
@@ -12,10 +14,16 @@
     $missionController = new MissionController();
     $missions = $missionController->getAll();
 
+    $countryController = new CountryController();
+    $countries = $countryController->getAll();
+
+    //var_dump($countries);
+
 ?>
 
 <main>
     <h1>Détail des missions</h1>
+
 
 
     <form action="detailMission.php" method="post">
@@ -34,25 +42,26 @@
 
     <?php
     if(!empty($_POST['mission'])):
-        $missionDetail = $missionController->getMissionDetail((int)($_POST['mission']));
-
-        //var_dump($missionDetail);
+        $missionById = $missionController->getMissionById((int)($_POST['mission']));
+        $countryId = $missionById->getCountryId();
+        $countryById = $countryController->getCountryById($countryId);
+        //var_dump($countryById);
     ?>
 
 
     <div class="card mt-5 w-75 m-auto" >
         <div class="card-body">
-            <h5 class="card-title">Nom de la mission: <?php echo $missionDetail->getTitle()?></h5>
-            <p class="card-text">Description: <?php echo $missionDetail->getDescription()?></p>
+            <h5 class="card-title">Nom de la mission: <?php echo $missionById->getTitle()?></h5>
+            <p class="card-text">Description: <?php echo $missionById->getDescription()?></p>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Nom de code: <?php echo $missionDetail->getCodeName()?></li>
-            <li class="list-group-item">Pays: <?php echo $missionDetail->getCountryId()?></li>
-            <li class="list-group-item">Spécialité requise: <?php echo $missionDetail->getSkillId()?></li>
-            <li class="list-group-item">Type de mission: <?php echo $missionDetail->getMissionTypeId()?></li>
-            <li class="list-group-item">Date de début: <?php echo $missionDetail->getStartDate()?></li>
-            <li class="list-group-item">Date de fin: <?php echo $missionDetail->getEndDate()?></li>
-            <li class="list-group-item">Status: <?php echo $missionDetail->getStatusId()?></li>
+            <li class="list-group-item">Nom de code: <?php echo $missionById->getCodeName()?></li>
+            <li class="list-group-item">Pays de la mission: <?php echo $countryById->getName()?></li>
+            <li class="list-group-item">Spécialité requise: <?php echo $missionById->getSkillId()?></li>
+            <li class="list-group-item">Type de mission: <?php echo $missionById->getMissionTypeId()?></li>
+            <li class="list-group-item">Date de début: <?php echo $missionById->getStartDate()?></li>
+            <li class="list-group-item">Date de fin: <?php echo $missionById->getEndDate()?></li>
+            <li class="list-group-item">Status: <?php echo $missionById->getStatusId()?></li>
         </ul>
         <div class="card-body">
             <a href="#" class="card-link">Mission précédente</a>
@@ -60,7 +69,7 @@
         </div>
     </div>
     <?php else:?>
-        <h5 class="m-5">Vous devez selectionner une mission</h5>
+        <h5 class="m-5">Selectionnez une mission</h5>
     <?php endif?>
 
 
