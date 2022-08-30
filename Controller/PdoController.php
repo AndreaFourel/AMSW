@@ -1,6 +1,6 @@
 <?php
 
-class PdoController
+trait PdoController
 {
 
     private PDO $pdo;

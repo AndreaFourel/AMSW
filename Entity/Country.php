@@ -35,7 +35,7 @@ class Country
      * @param string $id
      * @return Country
      */
-    public function setId(string $id): Country
+    private function setId(string $id): Country
     {
         $this->id = $id;
         return $this;

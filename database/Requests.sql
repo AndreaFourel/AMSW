@@ -12,3 +12,4 @@ SELECT p.first_name as 'prénom', p.last_name as 'nom', c.code_name as 'nom de c
 
 SELECT p.first_name as 'prénom', p.last_name as 'nom', t.code_name as 'nom de code' FROM target t INNER JOIN person p On t.target_id = p.id;
 
+

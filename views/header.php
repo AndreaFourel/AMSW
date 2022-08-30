@@ -44,10 +44,11 @@
                             <a class="nav-link <?php activePage('detailMission.php');?>" <?php echo $ariaCurrent?> href="<?= $appRoot ?>/views/detailMission.php">Détail des missions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?php activePage('admin.php');?> disabled" <?php echo $ariaCurrent?> >Admin</a>
+                            <a class="nav-link <?php activePage('admin.php');?>" <?php echo $ariaCurrent?> href="<?= $appRoot ?>/views/admin.php" >Admin</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+

@@ -59,17 +59,17 @@
 
     <div class="card mt-5 w-75 m-auto" >
         <div class="card-body">
-            <h5 class="card-title">Nom de la mission: <?php echo $missionById->getTitle()?></h5>
-            <p class="card-text">Description: <?php echo $missionById->getDescription()?></p>
+            <h5 class="card-title"><?php echo $missionById->getTitle()?></h5>
+            <p class="card-text"><?php echo $missionById->getDescription()?></p>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Nom de code: <?php echo $missionById->getCodeName()?></li>
-            <li class="list-group-item">Pays de la mission: <?php echo $countryById->getName()?></li>
-            <li class="list-group-item">Spécialité requise pour cette mission: <?php echo $skillById->getName()?></li>
-            <li class="list-group-item">Type de mission: <?php echo $missionById->getMissionTypeId()?></li>
-            <li class="list-group-item">Date de début: <?php echo $missionById->getStartDate()?></li>
-            <li class="list-group-item">Date de fin: <?php echo $missionById->getEndDate()?></li>
-            <li class="list-group-item">Status: <?php echo $missionById->getStatusId()?></li>
+            <li class="list-group-item">Nom de code : <?php echo $missionById->getCodeName()?></li>
+            <li class="list-group-item">Pays de la mission : <?php echo $countryById->getName()?></li>
+            <li class="list-group-item">Spécialité requise pour cette mission : <?php echo $skillById->getName()?></li>
+            <li class="list-group-item">Type de mission : <?php echo $missionById->getMissionTypeId()?></li>
+            <li class="list-group-item">Date de début : <?php echo $missionById->getStartDate()?></li>
+            <li class="list-group-item">Date de fin : <?php echo $missionById->getEndDate()?></li>
+            <li class="list-group-item">Status : <?php echo $missionById->getStatusId()?></li>
         </ul>
         <div class="card-body">
             <a href="#" class="card-link">Mission précédente</a>

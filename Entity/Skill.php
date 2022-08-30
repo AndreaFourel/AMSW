@@ -34,7 +34,7 @@ class Skill
      * @param int $id
      * @return Skill
      */
-    public function setId(int $id): Skill
+    private function setId(int $id): Skill
     {
         $this->id = $id;
         return $this;
