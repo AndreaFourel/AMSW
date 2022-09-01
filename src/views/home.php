@@ -1,11 +1,7 @@
 <main>
     <section class="mission-list">
         <h1 class="my-5">Liste des missions</h1>
-        <p><?php
-           $key = "snake_case_case";
-            echo implode('', array_map('ucfirst', explode('_', $key)));
-            var_dump($_SERVER['REQUEST_URI']);
-            ?></p>
+        <p></p>
         <div class="table-responsive-sm mt-5">
 
             <table class="table table-borderless">

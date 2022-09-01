@@ -39,10 +39,10 @@
                     ?>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link <?php activePage('index.php');?>" <?php echo $ariaCurrent?> href="<?= $appRoot ?>/public/index.php">Missions</a>
+                            <a class="nav-link <?php activePage('home');?>" <?php echo $ariaCurrent?> href="<?= $appRoot ?>/public/home">Missions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?php activePage('detailMission.php');?>" <?php echo $ariaCurrent?> href="<?= $appRoot ?>/public/index.php/detailMissions">Détail des missions</a>
+                            <a class="nav-link <?php activePage('detailMissions');?>" <?php echo $ariaCurrent?> href="<?= $appRoot ?>/public/detailMissions">Détail des missions</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link <?php activePage('admin.php');?>" <?php echo $ariaCurrent?> href="<?= $appRoot ?>/src/views/admin.php" >Admin</a>
