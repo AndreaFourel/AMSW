@@ -1,5 +1,9 @@
 <?php
 
+namespace Controller;
+
+use Entity\Skill;
+
 require_once "PdoController.php";
 
 class SkillController

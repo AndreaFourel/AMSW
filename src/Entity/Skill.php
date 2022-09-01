@@ -1,5 +1,6 @@
 <?php
 
+namespace Entity;
 class Skill
 {
     private int $id;
@@ -11,12 +12,12 @@ class Skill
         $this->hydrate($data);
     }
 
-    public function hydrate(array $data):void
+    public function hydrate(array $data): void
     {
-        foreach ($data as $key => $value){
+        foreach ($data as $key => $value) {
             $key = implode('', array_map('ucfirst', explode('_', $key)));
             $method = "set" . $key;
-            if(method_exists($this, $method)){
+            if (method_exists($this, $method)) {
                 $this->$method($value);
             }
         }

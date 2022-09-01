@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?php echo $appRoot ?>/styles/main.css">
+    <link rel="stylesheet" href="<?php echo $appRoot ?>/public/styles/main.css">
 
     <title><?php echo $title ?></title>
 </head>
@@ -17,7 +17,7 @@
        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="<?= $appRoot ?>/images/logo.png" alt="" width="30" height="24" class="d-inline-block align-text-top logo me-2">
+                    <img src="<?= $appRoot ?>/public/images/logo.png" alt="" width="30" height="24" class="d-inline-block align-text-top logo me-2">
                     AMSW
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,6 +30,7 @@
                     function activePage($current_page){
                         $url_array =  explode('/', $_SERVER['REQUEST_URI']) ;
                         $url = end($url_array);
+
                         if($current_page === $url){
                             echo 'active'; //class name in css
                             $ariaCurrent = 'aria-current="page"';
@@ -38,13 +39,13 @@
                     ?>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link <?php activePage('index.php');?>" <?php echo $ariaCurrent?> href="<?= $appRoot ?>/index.php">Missions</a>
+                            <a class="nav-link <?php activePage('index.php');?>" <?php echo $ariaCurrent?> href="<?= $appRoot ?>/public/index.php">Missions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?php activePage('detailMission.php');?>" <?php echo $ariaCurrent?> href="<?= $appRoot ?>/views/detailMission.php">Détail des missions</a>
+                            <a class="nav-link <?php activePage('detailMission.php');?>" <?php echo $ariaCurrent?> href="<?= $appRoot ?>/public/index.php/detailMissions">Détail des missions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?php activePage('admin.php');?>" <?php echo $ariaCurrent?> href="<?= $appRoot ?>/views/admin.php" >Admin</a>
+                            <a class="nav-link <?php activePage('admin.php');?>" <?php echo $ariaCurrent?> href="<?= $appRoot ?>/src/views/admin.php" >Admin</a>
                         </li>
                     </ul>
                 </div>

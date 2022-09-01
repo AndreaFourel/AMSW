@@ -1,5 +1,9 @@
 <?php
 
+namespace Controller;
+
+use Entity\Mission;
+
 require_once "PdoController.php";
 
 class MissionController
@@ -14,7 +18,7 @@ class MissionController
         $req = $this->pdo->prepare("SELECT * FROM `mission`");
         $req->execute();
         $data = $req->fetchAll();
-        foreach ($data as $mission){
+        foreach ($data as $mission) {
             $missions[] = new Mission($mission);
         }
         return $missions;
@@ -22,7 +26,7 @@ class MissionController
 
     public function getMissionById(int $id): Mission
     {
-        $req=$this->pdo->prepare("SELECT * FROM `mission` WHERE id = :id");
+        $req = $this->pdo->prepare("SELECT * FROM `mission` WHERE id = :id");
         $req->bindParam(":id", $id, PDO::PARAM_INT);
         $req->execute();
         $mission = $req->fetch();

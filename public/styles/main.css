@@ -15,7 +15,7 @@ body {
 }
 
 main {
-    background-image: url(".././images/a-twin.jpg");
+    background-image: url("../images/a-twin.jpg");
     background-size: cover;
     background-position-y: 30%;
     background-position-x: 40%;

@@ -1,30 +1,30 @@
 <?php
 
-    require_once "../config/DotEnv.php";
-    require_once "../Entity/Mission.php";
-    require_once "../Entity/Country.php";
-    require_once "../Entity/Skill.php";
-    require_once "../Controller/MissionController.php";
-    require_once "../Controller/CountryController.php";
-    require_once "../Controller/SkillController.php";
-
-    // Instantiate DotEnv to get APP_PATH value used in header.php href and src's
-    (new DotEnv(__DIR__ . '/../.env'))->load();
-    $appRoot = getenv('APP_PATH');
-    $title = "AMSW - Détail des missions";
-    include "./header.php";
-
-    // Instantiate MissionController
-    $missionController = new MissionController();
-    $missions = $missionController->getAll();
-
-    // Instantiate CountryController
-    $countryController = new CountryController();
-
-    // Instantiate SkillController
-    $skillController = new SkillController();
-
-    //var_dump($countries);
+//    require_once "../config/DotEnv.php";
+//    require_once "../Entity/Mission.php";
+//    require_once "../Entity/Country.php";
+//    require_once "../Entity/Skill.php";
+//    require_once "../Controller/MissionController.php";
+//    require_once "../Controller/CountryController.php";
+//    require_once "../Controller/SkillController.php";
+//
+//    // Instantiate DotEnv to get APP_PATH value used in header.php href and src's
+//    (new DotEnv(__DIR__ . '/../.env'))->load();
+//    $appRoot = getenv('APP_PATH');
+//    $title = "AMSW - Détail des missions";
+//    include "./header.php";
+//
+//    // Instantiate MissionController
+//    $missionController = new MissionController();
+//    $missions = $missionController->getAll();
+//
+//    // Instantiate CountryController
+//    $countryController = new CountryController();
+//
+//    // Instantiate SkillController
+//    $skillController = new SkillController();
+//
+//    //var_dump($countries);
 
 ?>
 
@@ -53,7 +53,7 @@
         $countryId = $missionById->getCountryId();
         $countryById = $countryController->getCountryById($countryId);
         $skillById = $skillController->getSkillById($missionById->getSkillId());
-        //var_dump($skillById);
+        var_dump($_SERVER['REQUEST_URI']);
     ?>
 
 
@@ -85,5 +85,5 @@
 </main>
 
 <?php
-    include "./footer.php";
-?>
+//    include "./footer.php";
+//?>

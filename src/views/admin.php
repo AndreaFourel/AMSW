@@ -1,9 +1,9 @@
 <?php
 
-require_once "../config/DotEnv.php";
+require_once "../../config/DotEnv.php";
 
 // Instantiate DotEnv to get APP_PATH value used in header.php href and src's
-(new DotEnv(__DIR__ . '/../.env'))->load();
+(new DotEnv(__DIR__ . '/../../.env'))->load();
 $appRoot = getenv('APP_PATH');
 $title = "AMSW - Admin";
 include "./header.php";
@@ -12,12 +12,12 @@ include "./header.php";
     <h1>Admin</h1>
 
     <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">
-        Menu admin
+        Acceder au tableau de bord
     </button>
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvas">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvas">Menu</h5>
+            <h5 class="offcanvas-title" id="offcanvas">Tableau de Bord</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">

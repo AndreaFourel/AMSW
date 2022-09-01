@@ -1,5 +1,9 @@
 <?php
 
+namespace Controller;
+
+use Entity\Country;
+
 require_once "PdoController.php";
 
 class CountryController
@@ -12,7 +16,7 @@ class CountryController
         $req = $this->pdo->prepare("SELECT * FROM `country`");
         $req->execute();
         $data = $req->fetchAll();
-        foreach ($data as $country){
+        foreach ($data as $country) {
             $countries[] = new Country($country);
         }
         return $countries;
@@ -23,7 +27,7 @@ class CountryController
         $req = $this->pdo->prepare("SELECT * FROM `country` WHERE id = :id");
         $req->bindParam(":id", $id, PDO::PARAM_STR);
         $req->execute();
-        $country =$req->fetch();
+        $country = $req->fetch();
         return new Country(($country));
     }
 }

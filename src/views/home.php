@@ -1,30 +1,11 @@
-
-<?php
-
-    require_once "./config/DotEnv.php";
-    require_once "./Entity/Mission.php";
-    require_once "./Controller/MissionController.php";
-
-    // Instantiate DotEnv to get APP_PATH value used in header.php href and src's
-    (new DotEnv(__DIR__ . '/.env'))->load();
-    $appRoot = getenv('APP_PATH');
-    $title = "AMSW - Missions";
-
-    include "./views/header.php";
-
-    $missionController = new MissionController();
-    $missions = $missionController->getAll();
-
-
-
-?>
-
 <main>
     <section class="mission-list">
         <h1 class="my-5">Liste des missions</h1>
         <p><?php
-            $key = "snake_case_case";
-            echo implode('', array_map('ucfirst', explode('_', $key)))?></p>
+           $key = "snake_case_case";
+            echo implode('', array_map('ucfirst', explode('_', $key)));
+            var_dump($_SERVER['REQUEST_URI']);
+            ?></p>
         <div class="table-responsive-sm mt-5">
 
             <table class="table table-borderless">
@@ -38,6 +19,7 @@
                 </thead>
                 <tbody>
                 <?php
+
                 foreach ($missions as $mission):
                     ?>
                     <tr class="list-row">
@@ -59,6 +41,3 @@
     </section>
 
 </main>
-<?php
-include "./views/footer.php";
-?>

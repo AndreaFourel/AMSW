@@ -1,5 +1,6 @@
 <?php
 
+namespace Entity;
 class Country
 {
     private string $id;
@@ -12,12 +13,12 @@ class Country
         $this->hydrate($data);
     }
 
-    public function hydrate (array $data):void
+    public function hydrate(array $data): void
     {
-        foreach ($data as $key => $value){
+        foreach ($data as $key => $value) {
             $key = implode('', array_map('ucfirst', explode('_', $key)));//$key from snake to camel case
             $method = "set" . $key;
-            if(method_exists($this, $method)){ //check if setter exists and call the setter
+            if (method_exists($this, $method)) { //check if setter exists and call the setter
                 $this->$method($value);
             }
         }

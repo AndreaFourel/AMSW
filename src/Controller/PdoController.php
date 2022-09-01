@@ -1,5 +1,9 @@
 <?php
 
+namespace Controller;
+use DotEnv;
+use PDO;
+
 trait PdoController
 {
 
@@ -8,7 +12,7 @@ trait PdoController
     public function __construct()
     {
         try {
-            (new DotEnv(__DIR__ . '/../.env'))->load();
+            (new DotEnv(__DIR__ . '/../../.env'))->load();
             $pdo = new PDO(getenv('DATABASE_DNS'), getenv('DATABASE_USER'), getenv('DATABASE_PASSWORD'));
             $this->setPdo($pdo);
         } catch (PDOException $e) {
