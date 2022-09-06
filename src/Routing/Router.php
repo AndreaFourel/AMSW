@@ -70,7 +70,7 @@ class Router
             } else {
                 $controllerInstance->$method();
             }
-        } elseif ($requestMethod === 'POST') {
+        } else {
             $controllerInstance->$method((int)($_POST['mission']));
 
         }

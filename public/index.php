@@ -7,25 +7,37 @@
     use Routing\RouteNotFoundException;
     use Controller\AdminController;
 
-    require_once ".././config/DotEnv.php";
-    require_once ".././src/Entity/Mission.php";
-    require_once ".././src/Entity/Country.php";
-    require_once ".././src/Entity/Skill.php";
-    require_once ".././src/Controller/MissionController.php";
-    require_once ".././src/Controller/MissionDetailController.php";
-    require_once ".././src/Controller/IndexController.php";
-    require_once ".././src/Controller/AdminController.php";
-    require_once ".././src/Controller/CountryController.php";
-    require_once ".././src/Controller/SkillController.php";
-    require_once ".././src/Routing/Router.php";
-    require_once ".././src/Routing/RouteNotFoundException.php";
+//    require_once ".././config/DotEnv.php";
+//    require_once ".././src/Entity/Mission.php";
+//    require_once ".././src/Entity/Country.php";
+//    require_once ".././src/Entity/Skill.php";
+//    require_once ".././src/Controller/MissionController.php";
+//    require_once ".././src/Controller/MissionDetailController.php";
+//    require_once ".././src/Controller/IndexController.php";
+//    require_once ".././src/Controller/AdminController.php";
+//    require_once ".././src/Controller/CountryController.php";
+//    require_once ".././src/Controller/SkillController.php";
+//    require_once ".././src/Routing/Router.php";
+//    require_once ".././src/Routing/RouteNotFoundException.php";
+
+    function loadClass(string $class){
+        if ($class === "DotEnv"){
+            require_once ".././config/$class.php";
+        } elseif (str_contains($class, "Controller")){
+            require_once ".././src/$class.php";
+        } else {
+            require_once ".././src/$class.php";
+        }
+    }
+
+    spl_autoload_register("loadClass");
 
     // Instantiate DotEnv to get APP_PATH value used in header.php href and src's
     (new DotEnv(__DIR__ . '/../.env'))->load();
     $appRoot = getenv('APP_PATH');
     $title = "AMSW - Missions";
     $indexController = new IndexController();
-    include ".././src/views/header.php";
+    require_once ".././src/views/header.php";
 
 //    var_dump($_SERVER['REQUEST_URI']);
 //    var_dump($_SERVER["PHP_SELF"]);
@@ -65,7 +77,7 @@
     );
     $router->addRoute(
         'mission_detail_id',
-        '/missionDetail/1',
+        "/missionDetail/1",
         'GET',
         MissionDetailController::class,
         'missionDetail'
@@ -103,4 +115,4 @@
         echo $e->getMessage();
     }
 
-include ".././src/views/footer.php";
+    require_once ".././src/views/footer.php";
