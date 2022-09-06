@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Entity\Skill;
+use PDO;
 
 require_once "PdoController.php";
 

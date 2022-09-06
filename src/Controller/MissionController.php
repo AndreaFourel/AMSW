@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Entity\Mission;
+use PDO;
 
 require_once "PdoController.php";
 
@@ -17,6 +18,7 @@ class MissionController
         $missions = [];
         $req = $this->pdo->prepare("SELECT * FROM `mission`");
         $req->execute();
+
         $data = $req->fetchAll();
         foreach ($data as $mission) {
             $missions[] = new Mission($mission);

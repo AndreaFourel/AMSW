@@ -1,39 +1,7 @@
-<?php
-
-//    require_once "../config/DotEnv.php";
-//    require_once "../Entity/Mission.php";
-//    require_once "../Entity/Country.php";
-//    require_once "../Entity/Skill.php";
-//    require_once "../Controller/MissionController.php";
-//    require_once "../Controller/CountryController.php";
-//    require_once "../Controller/SkillController.php";
-//
-//    // Instantiate DotEnv to get APP_PATH value used in header.php href and src's
-//    (new DotEnv(__DIR__ . '/../.env'))->load();
-//    $appRoot = getenv('APP_PATH');
-//    $title = "AMSW - Détail des missions";
-//    include "./header.php";
-//
-//    // Instantiate MissionController
-//    $missionController = new MissionController();
-//    $missions = $missionController->getAll();
-//
-//    // Instantiate CountryController
-//    $countryController = new CountryController();
-//
-//    // Instantiate SkillController
-//    $skillController = new SkillController();
-//
-//    //var_dump($countries);
-
-?>
-
 <main>
     <h1>Détail des missions</h1>
 
-
-
-    <form action="detailMission.php" method="post">
+    <form action="missionDetail" method="post">
         <div class="input-group w-75 m-auto">
             <select class="form-select form-select" aria-label="Choisir une mission" name="mission">
                 <option value="" selected>Sélectionnez la mission à détailler</option>
@@ -48,15 +16,7 @@
     </form>
 
     <?php
-    if(!empty($_POST['mission'])):
-        $missionById = $missionController->getMissionById((int)($_POST['mission']));
-        $countryId = $missionById->getCountryId();
-        $countryById = $countryController->getCountryById($countryId);
-        $skillById = $skillController->getSkillById($missionById->getSkillId());
-        var_dump($_SERVER['REQUEST_URI']);
-    ?>
-
-
+    if (isset($missionById)) { ?>
     <div class="card mt-5 w-75 m-auto" >
         <div class="card-body">
             <h5 class="card-title"><?php echo $missionById->getTitle()?></h5>
@@ -76,14 +36,7 @@
             <a href="#" class="card-link">Mission suivante</a>
         </div>
     </div>
-    <?php else:?>
-        <h5 class="m-5">Selectionnez une mission</h5>
-    <?php endif?>
 
-
+    <?php }    ?>
 
 </main>
-
-<?php
-//    include "./footer.php";
-//?>

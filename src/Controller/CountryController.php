@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Entity\Country;
+use PDO;
 
 require_once "PdoController.php";
 

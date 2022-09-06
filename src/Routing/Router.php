@@ -2,9 +2,15 @@
 
 namespace Routing;
 
+
+use ReflectionException;
+use ReflectionMethod;
+
+
 class Router
 {
     private array $routes = [];
+
 
     // Adds a route into router internal array
     public function addRoute(
@@ -36,6 +42,7 @@ class Router
 
     /**
      * @throws RouteNotFoundException if route not found
+     * @throws ReflectionException
      */
     public function execute(string $requestUri, string $requestMethod)
     {
@@ -45,8 +52,29 @@ class Router
         }
         $controller = $route['controller'];
         $method = $route['method'];
-
         $controllerInstance = new $controller();
-        $controllerInstance->$method();
+
+        $methodInfo = new ReflectionMethod($controller . '::' . $method);
+        $methodParams = $methodInfo->getParameters();
+//        var_dump($methodParams);
+//        var_dump($requestUri);
+//        $requestUriArray = explode('/', $requestUri);
+//        var_dump(end($requestUriArray));
+        if($requestMethod === 'GET'){
+            if (!empty($methodParams)) {
+                $requestUriArray = explode('/', $requestUri);
+                $param = intval(end($requestUriArray));
+
+                $controllerInstance->$method($param);
+
+            } else {
+                $controllerInstance->$method();
+            }
+        } elseif ($requestMethod === 'POST') {
+            $controllerInstance->$method((int)($_POST['mission']));
+
+        }
+
     }
+
 }
