@@ -26,13 +26,19 @@ class Mission
 
     // Methods
 
-    //hydrate function
+    /**
+     * hydrate instances of this class with data
+     *
+     * @param array $data
+     */
     public function hydrate(array $data): void
     {
         foreach ($data as $key => $value) {
-            $key = implode('', array_map('ucfirst', explode('_', $key)));//$key from snake to camel case
+            //$key from snake to camel case
+            $key = implode('', array_map('ucfirst', explode('_', $key)));
             $method = "set" . $key;
-            if (method_exists($this, $method)) { //check if setter exists and call the setter
+            //check if setter exists and call the setter
+            if (method_exists($this, $method)) {
                 $this->$method($value);
             }
         }
@@ -70,9 +76,7 @@ class Mission
      */
     public function setTitle(string $title): self
     {
-        //if (ctype_alnum($title) && strlen($title) >= 3 && strlen($title) <= 50) {
         $this->title = $title;
-        //}
         return $this;
     }
 
@@ -90,9 +94,7 @@ class Mission
      */
     public function setDescription(string $description): self
     {
-        //if (ctype_alnum($description) && strlen($description) >= 3 && strlen($description) <= 255) {
         $this->description = $description;
-        //}
         return $this;
     }
 
@@ -110,9 +112,7 @@ class Mission
      */
     public function setCodeName(string $codeName): self
     {
-        //if (ctype_alnum($codeName) && strlen($codeName) >= 3 && strlen($codeName) <= 50) {
         $this->codeName = $codeName;
-        //}
         return $this;
     }
 
@@ -130,9 +130,7 @@ class Mission
      */
     public function setStartDate(string $startDate): self
     {
-        //if (ctype_alnum($startDate) && strlen($startDate) >= 3 && strlen($startDate) <= 50) {
         $this->startDate = $startDate;
-        //}
         return $this;
     }
 
@@ -150,9 +148,7 @@ class Mission
      */
     public function setEndDate(string $endDate): self
     {
-        //if (ctype_alnum($endDate) && strlen($endDate) >= 3 && strlen($endDate) <= 50) {
         $this->endDate = $endDate;
-        //}
         return $this;
     }
 
@@ -170,9 +166,7 @@ class Mission
      */
     public function setCountryId(string $countryId): self
     {
-        //if (ctype_alpha($countryId) && strlen($countryId) === 3) {
         $this->countryId = $countryId;
-        //}
         return $this;
     }
 
@@ -190,9 +184,7 @@ class Mission
      */
     public function setSkillId(int $skillId): self
     {
-        //if($skillId > 0){
         $this->skillId = $skillId;
-        //}
         return $this;
     }
 
@@ -210,9 +202,7 @@ class Mission
      */
     public function setMissionTypeId(int $missionTypeId): self
     {
-        //if($missionTypeId > 0){
         $this->missionTypeId = $missionTypeId;
-        // }
         return $this;
     }
 
@@ -230,9 +220,7 @@ class Mission
      */
     public function setStatusId(int $statusId): self
     {
-        //if($statusId > 0){
         $this->statusId = $statusId;
-        //}
         return $this;
     }
 

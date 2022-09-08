@@ -7,19 +7,6 @@
     use Routing\RouteNotFoundException;
     use Controller\AdminController;
 
-//    require_once ".././config/DotEnv.php";
-//    require_once ".././src/Entity/Mission.php";
-//    require_once ".././src/Entity/Country.php";
-//    require_once ".././src/Entity/Skill.php";
-//    require_once ".././src/Controller/MissionController.php";
-//    require_once ".././src/Controller/MissionDetailController.php";
-//    require_once ".././src/Controller/IndexController.php";
-//    require_once ".././src/Controller/AdminController.php";
-//    require_once ".././src/Controller/CountryController.php";
-//    require_once ".././src/Controller/SkillController.php";
-//    require_once ".././src/Routing/Router.php";
-//    require_once ".././src/Routing/RouteNotFoundException.php";
-
     function loadClass(string $class){
         if ($class === "DotEnv"){
             require_once ".././config/$class.php";
@@ -39,14 +26,11 @@
     $indexController = new IndexController();
     require_once ".././src/views/header.php";
 
-//    var_dump($_SERVER['REQUEST_URI']);
-//    var_dump($_SERVER["PHP_SELF"]);
-//    var_dump(dirname($_SERVER['PHP_SELF']));
 
     //Instantiate Router
     $router = new Router();
 
-    //Add routes to $routes array
+    //Add routes to $routes array with the right controller and method
     $router->addRoute(
         'home_page',
         '/',
@@ -75,15 +59,16 @@
         MissionDetailController::class,
         'missionSelect'
     );
+
     $router->addRoute(
         'mission_detail_id',
-        "/missionDetail/1",
+        "/missionDetail/{id}",
         'GET',
         MissionDetailController::class,
         'missionDetail'
     );
     $router->addRoute(
-        'mission_detail_id',
+        'mission_detail',
         '/missionDetail',
         'POST',
         MissionDetailController::class,
@@ -98,13 +83,10 @@
     );
 
 
-
     //delete root directory from $_SERVER['REQUEST_URI']
     $requestUri =  str_replace(dirname($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']);
-//    var_dump($requestUri);
-//    var_dump($_SERVER['REQUEST_METHOD']);
 
-    //gives to router the REQUEST_URI and METHOD to find the route
+    //gives router the REQUEST_URI and METHOD to find the route
     try {
         $router->execute($requestUri, $_SERVER['REQUEST_METHOD']);
     } catch (RouteNotFoundException $exception) {

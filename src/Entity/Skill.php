@@ -12,6 +12,11 @@ class Skill
         $this->hydrate($data);
     }
 
+    /**
+     * hydrate instances of this class with data
+     *
+     * @param array $data
+     */
     public function hydrate(array $data): void
     {
         foreach ($data as $key => $value) {

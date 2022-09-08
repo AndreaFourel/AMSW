@@ -13,12 +13,17 @@ class Country
         $this->hydrate($data);
     }
 
+    /**
+     * hydrate instances of this class with data
+     *
+     * @param array $data
+     */
     public function hydrate(array $data): void
     {
         foreach ($data as $key => $value) {
-            $key = implode('', array_map('ucfirst', explode('_', $key)));//$key from snake to camel case
+            $key = implode('', array_map('ucfirst', explode('_', $key)));
             $method = "set" . $key;
-            if (method_exists($this, $method)) { //check if setter exists and call the setter
+            if (method_exists($this, $method)) {
                 $this->$method($value);
             }
         }
