@@ -40,6 +40,16 @@ class MissionDetailController
             $skillId = $missionById->getSkillId();
             $skillById = $skillController->getSkillById($skillId);
 
+            // Instantiate MissionTypeController
+            $missionTypeController = new MissionTypeController();
+            $missionTypeId = $missionById->getMissionTypeId();
+            $missionTypeById = $missionTypeController->getMissionTypeById($missionTypeId);
+
+            //Instantiate MissionStatusController
+            $missionStatusController = new MissionStatusController();
+            $missionStatusId = $missionById->getStatusId();
+            $missionStatusById = $missionStatusController->getMissionStatusById($missionStatusId);
+
             require_once ".././src/views/missionDetail.php";
         } else {
             throw new RouteNotFoundException($id);

@@ -16,7 +16,7 @@ class SkillController
         $req = $this->pdo->prepare("SELECT * FROM `skill` WHERE id = :id");
         $req->bindParam(':id', $id, PDO::PARAM_INT);
         $req->execute();
-        $skill = $req->fetch();
-        return new Skill($skill);
+        $data = $req->fetch();
+        return new Skill($data);
     }
 }
